@@ -9,6 +9,7 @@
 
 <script>
 import axios from 'axios';
+import './fixtures/products';
 
 export default {
   name: 'App',
