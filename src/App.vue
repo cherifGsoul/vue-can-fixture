@@ -1,18 +1,26 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h3>Products</h3>
+    <ul>
+      <li v-for="product of products" :key="product.id">{{product.name}}</li>
+    </ul>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import axios from 'axios';
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
+  data() {
+    return {
+      products: []
+    }
+  },
+  async created() {
+    const response = await axios.get('/api/products');
+    this.products = response.data;
+  } 
 }
 </script>
 
@@ -24,5 +32,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+li {
+  list-style: none;
 }
 </style>
